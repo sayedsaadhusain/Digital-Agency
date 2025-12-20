@@ -1,7 +1,6 @@
-
 import React, { useState } from "react"
 import { motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Calendar, User, Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -25,7 +24,9 @@ const posts = [
     
     Understanding these trends is crucial for developers and businesses looking to stay competitive in the digital landscape.`,
     date: "2025-04-01",
-    image: "https://images.unsplash.com/photo-1504639725590-34d0984388bd"
+    author: "Sayed Saad",
+    readTime: "5 min read",
+    image: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800&q=80"
   },
   {
     title: "Why UX Design Matters More Than Ever",
@@ -40,7 +41,9 @@ const posts = [
     
     Delivering an exceptional user experience is no longer optional; it’s essential for brand loyalty and business growth.`,
     date: "2025-04-05",
-    image: "https://images.unsplash.com/photo-1522199710521-72d69614c702"
+    author: "Sayed Saad",
+    readTime: "4 min read",
+    image: "https://images.unsplash.com/photo-1522199710521-72d69614c702?w=800&q=80"
   },
   {
     title: "A Beginner's Guide to API Integration",
@@ -55,17 +58,18 @@ const posts = [
     
     Mastering API integration is crucial for modern developers aiming to build feature-rich and scalable applications.`,
     date: "2025-04-10",
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    author: "Sayed Saad",
+    readTime: "6 min read",
+    image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80"
   }
-  // ... (rest of the posts array)
 ]
 
 const Blog = () => {
   const [selectedPost, setSelectedPost] = useState(null)
 
   return (
-    <section className="py-20 bg-card/50">
-      <div className="container mx-auto px-4">
+    <section className="py-24 bg-background">
+      <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -73,47 +77,70 @@ const Blog = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 neon-glow">
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">
             Latest <span className="gradient-text">Insights</span>
           </h2>
-          <p className="text-muted-foreground">Stay updated with our latest thoughts and innovations</p>
+          <p className="text-xl text-muted-foreground w-full max-w-2xl mx-auto">
+            Stay updated with our latest thoughts on technology, design, and innovation.
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.map((post, index) => (
             <motion.article
               key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-card rounded-lg overflow-hidden gradient-border group"
+              className="bg-card rounded-2xl overflow-hidden border border-white/5 hover:border-primary/20 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/5 flex flex-col group cursor-pointer"
+              onClick={() => setSelectedPost(post)}
             >
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-56 overflow-hidden">
                 <img
                   src={post.image}
                   alt={post.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
+                <div className="absolute top-4 left-4 bg-background/80 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium border border-white/10">
+                  Tech Trends
+                </div>
               </div>
-              <div className="p-6">
-                <time className="text-sm text-primary mb-2 block">
-                  {new Date(post.date).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                  })}
-                </time>
-                <h3 className="text-xl font-semibold mb-3">{post.title}</h3>
-                <p className="text-muted-foreground mb-4">{post.excerpt}</p>
-                <Button 
-                  variant="ghost" 
-                  className="group"
-                  onClick={() => setSelectedPost(post)}
-                >
-                  Read More
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Button>
+
+              <div className="p-6 flex flex-col flex-grow">
+                <div className="flex items-center gap-4 text-xs text-muted-foreground mb-4">
+                  <div className="flex items-center gap-1">
+                    <Calendar className="h-3 w-3" />
+                    {new Date(post.date).toLocaleDateString('en-US', {
+                      month: 'short',
+                      day: 'numeric'
+                    })}
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Clock className="h-3 w-3" />
+                    {post.readTime}
+                  </div>
+                </div>
+
+                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                  {post.title}
+                </h3>
+                <p className="text-muted-foreground mb-6 line-clamp-3 text-sm flex-grow">
+                  {post.excerpt}
+                </p>
+
+                <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
+                  <div className="flex items-center gap-2">
+                    <div className="h-8 w-8 rounded-full bg-secondary flex items-center justify-center">
+                      <User className="h-4 w-4 text-primary" />
+                    </div>
+                    <span className="text-sm font-medium">{post.author}</span>
+                  </div>
+                  <span className="text-primary text-sm font-medium flex items-center group-hover:translate-x-1 transition-transform">
+                    Read More <ArrowRight className="ml-1 h-3 w-3" />
+                  </span>
+                </div>
               </div>
             </motion.article>
           ))}
@@ -121,34 +148,37 @@ const Blog = () => {
       </div>
 
       <Dialog open={!!selectedPost} onOpenChange={() => setSelectedPost(null)}>
-        <DialogContent className="sm:max-w-[700px]">
+        <DialogContent className="sm:max-w-[700px] bg-card/95 backdrop-blur-xl border-white/10 p-0 overflow-hidden">
           {selectedPost && (
-            <>
-              <DialogHeader>
-                <DialogTitle className="text-2xl gradient-text mb-4">
-                  {selectedPost.title}
-                </DialogTitle>
-                <time className="text-sm text-primary">
-                  {new Date(selectedPost.date).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                  })}
-                </time>
-              </DialogHeader>
-              <div className="space-y-6">
-                <div className="relative h-[300px] overflow-hidden rounded-lg">
-                  <img
-                    src={selectedPost.image}
-                    alt={selectedPost.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+            <div className="flex flex-col h-full max-h-[90vh] overflow-y-auto">
+              <div className="relative h-64 w-full">
+                <img
+                  src={selectedPost.image}
+                  alt={selectedPost.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
+              </div>
+
+              <div className="p-8">
+                <DialogHeader className="mb-6 text-left">
+                  <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
+                    <span className="flex items-center gap-1"><Calendar className="h-4 w-4" /> {new Date(selectedPost.date).toLocaleDateString()}</span>
+                    <span className="flex items-center gap-1"><Clock className="h-4 w-4" /> {selectedPost.readTime}</span>
+                    <span className="flex items-center gap-1"><User className="h-4 w-4" /> {selectedPost.author}</span>
+                  </div>
+                  <DialogTitle className="text-3xl font-bold gradient-text leading-tight">
+                    {selectedPost.title}
+                  </DialogTitle>
+                </DialogHeader>
+
                 <div className="prose prose-invert max-w-none">
-                  <p className="whitespace-pre-line">{selectedPost.content}</p>
+                  <p className="whitespace-pre-line text-muted-foreground leading-loose text-lg">
+                    {selectedPost.content}
+                  </p>
                 </div>
               </div>
-            </>
+            </div>
           )}
         </DialogContent>
       </Dialog>

@@ -10,12 +10,22 @@ module.exports = {
 	theme: {
 		container: {
 			center: true,
-			padding: '2rem',
+			padding: {
+				DEFAULT: '3rem',
+				sm: '5rem',
+				lg: '8rem',
+				xl: '10rem',
+				'2xl': '12rem',
+			},
 			screens: {
-				'2xl': '1400px',
+				'2xl': '1280px',
 			},
 		},
 		extend: {
+			fontFamily: {
+				sans: ['Inter', 'sans-serif'],
+				heading: ['Outfit', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',

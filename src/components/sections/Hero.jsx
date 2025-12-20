@@ -1,111 +1,108 @@
-
 import React from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
+import { ArrowRight, CheckCircle, Star, Phone } from "lucide-react"
 import { Link } from "react-scroll"
-import { ArrowRight } from "lucide-react"
-import { ProjectForm } from "@/components/project-form"
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Video Background */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-background/60 backdrop-blur-sm z-10" />
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover"
-          poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-        >
-          <source
-            src="https://storage.googleapis.com/hostinger-horizons-assets-prod/videos/tech-background.mp4"
-            type="video/mp4"
-          />
-        </video>
-      </div>
-
-      {/* Animated Particles */}
-      <div className="absolute inset-0 z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/50 to-background" />
-        <div className="particle-container">
-          {[...Array(50)].map((_, i) => (
-            <div
-              key={i}
-              className="particle"
-              style={{
-                "--particle-size": `${Math.random() * 2 + 1}px`,
-                "--particle-delay": `${Math.random() * 5}s`,
-                "--particle-top": `${Math.random() * 100}%`,
-                "--particle-left": `${Math.random() * 100}%`,
-              }}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="container mx-auto px-4 relative z-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center"
-        >
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="text-4xl md:text-7xl font-bold mb-6 neon-glow relative"
+    <section className="relative min-h-screen flex items-center pt-20 pb-20 overflow-hidden hero-pattern">
+      <div className="container mx-auto relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            We Create{" "}
-            <span className="gradient-text relative">
-              Digital Futures
-              <motion.span
-                className="absolute -inset-1 rounded-lg bg-primary/20 blur-lg"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: [0, 1, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
-            </span>
-          </motion.h1>
+            <div className="inline-flex items-center space-x-2 bg-primary/10 rounded-full px-4 py-2 mb-6 border border-primary/20">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+              </span>
+              <span className="text-sm font-medium text-primary-foreground/80">Available for new projects</span>
+            </div>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            className="text-lg md:text-xl text-foreground/90 mb-8 max-w-2xl mx-auto backdrop-blur-sm rounded-lg p-4"
-          >
-            Transforming ideas into extraordinary digital experiences with cutting-edge
-            technology and innovative design.
-          </motion.p>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+              We Build <span className="gradient-text">Digital Products</span> That Drive Growth
+            </h1>
+
+            <p className="text-xl text-muted-foreground mb-8 max-w-lg">
+              Transform your business with high-converting websites and applications. We combine stunning design with cutting-edge technology to deliver results.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 mb-12">
+              <a href="https://calendly.com/" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" className="w-full sm:w-auto text-lg px-8 py-6 bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25">
+                  Book 1:1 Call
+                  <Phone className="ml-2 h-5 w-5" />
+                </Button>
+              </a>
+              <Link to="portfolio" smooth={true} duration={500}>
+                <Button size="lg" variant="outline" className="w-full sm:w-auto text-lg px-8 py-6 border-white/10 hover:bg-white/5">
+                  View Our Work
+                </Button>
+              </Link>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-4 text-sm text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-5 w-5 text-green-500" />
+                <span>Fast Delivery</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-5 w-5 text-green-500" />
+                <span>24/7 Support</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-5 w-5 text-green-500" />
+                <span>Satisfaction Guaranteed</span>
+              </div>
+            </div>
+          </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="flex flex-wrap justify-center gap-4"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative hidden lg:block"
           >
-            <ProjectForm />
-            <Link to="portfolio" spy={true} smooth={true} offset={-100} duration={500}>
-              <Button
-                size="lg"
-                variant="outline"
-                className="group relative overflow-hidden"
-              >
-                <span className="relative z-10">View Our Work</span>
-                <motion.div
-                  className="absolute inset-0 bg-primary/10"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: "100%" }}
-                  transition={{ duration: 0.8 }}
-                />
-              </Button>
-            </Link>
+            <div className="relative z-10 bg-card/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl">
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                <div className="bg-background/50 p-4 rounded-xl border border-white/5">
+                  <div className="text-3xl font-bold gradient-text mb-1">98%</div>
+                  <div className="text-sm text-muted-foreground">Client Satisfaction</div>
+                </div>
+                <div className="bg-background/50 p-4 rounded-xl border border-white/5">
+                  <div className="text-3xl font-bold gradient-text mb-1">250+</div>
+                  <div className="text-sm text-muted-foreground">Projects Delivered</div>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="flex items-center gap-4 bg-background/30 p-3 rounded-lg border border-white/5">
+                    <div className="h-10 w-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold">
+                      {String.fromCharCode(64 + i)}
+                    </div>
+                    <div>
+                      <div className="font-medium">Project Success</div>
+                      <div className="text-xs text-muted-foreground">Delivered on time and budget</div>
+                    </div>
+                    <div className="ml-auto flex">
+                      {[1, 2, 3, 4, 5].map((s) => (
+                        <Star key={s} className="h-3 w-3 text-yellow-500 fill-yellow-500" />
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Decorative elements */}
+            <div className="absolute -top-10 -right-10 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl -z-10"></div>
+            <div className="absolute -bottom-10 -left-10 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl -z-10"></div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

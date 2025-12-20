@@ -10,6 +10,7 @@ const navItems = [
   { name: "Home", to: "home" },
   { name: "Services", to: "services" },
   { name: "Portfolio", to: "portfolio" },
+  { name: "Pricing", to: "pricing" },
   { name: "About", to: "about" },
   { name: "Testimonials", to: "testimonials" },
   { name: "Blog", to: "blog" },
@@ -32,11 +33,10 @@ const Navbar = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/80 backdrop-blur-lg shadow-lg" : "bg-transparent"
-      }`}
+      className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? "bg-background/80 backdrop-blur-lg shadow-lg" : "bg-transparent"
+        }`}
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto">
         <div className="flex items-center justify-between h-20">
           <Link
             to="home"
@@ -46,7 +46,7 @@ const Navbar = () => {
             duration={500}
             className="text-2xl font-bold gradient-text cursor-pointer"
           >
-            DevAgency
+            BrandIgnite
           </Link>
 
           {/* Desktop Menu */}
@@ -71,7 +71,7 @@ const Navbar = () => {
               rel="noopener noreferrer"
               className="inline-block"
             >
-              <Button className="gradient-border">Get a Quote</Button>
+              <Button className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white border-0 hover:opacity-90 transition-opacity">Get a Quote</Button>
             </a>
           </div>
 
@@ -120,7 +120,7 @@ const Navbar = () => {
                   rel="noopener noreferrer"
                   className="block w-full"
                 >
-                  <Button className="w-full gradient-border">Get a Quote</Button>
+                  <Button className="w-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white border-0 hover:opacity-90 transition-opacity">Get a Quote</Button>
                 </a>
               </div>
             </motion.div>

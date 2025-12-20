@@ -1,100 +1,53 @@
-
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
+import { ExternalLink, Github, Layers, Code, Loader2 } from "lucide-react"
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
-  DialogTitle,
 } from "@/components/ui/dialog"
-
-const projects = [
-  {
-    title: "E-commerce Platform",
-    description: "Next-gen shopping experience with advanced features including real-time inventory management, AI-powered product recommendations, and seamless payment integration.",
-    image: "https://images.unsplash.com/photo-1539278383962-a7774385fa02",
-    category: "Web Development",
-    technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-    features: [
-      "Real-time inventory tracking",
-      "AI product recommendations",
-      "Multi-currency support",
-      "Advanced analytics dashboard"
-    ]
-  },
-  {
-    title: "Mobile Banking App",
-    description: "Secure financial solutions with biometric authentication, real-time transactions, and comprehensive financial management tools.",
-    image: "https://images.unsplash.com/photo-1575195662509-43c05a6b0b1f",
-    category: "Mobile App",
-    technologies: ["React Native", "Firebase", "Redux", "Plaid API"],
-    features: [
-      "Biometric security",
-      "Real-time transactions",
-      "Budget tracking",
-      "Investment portfolio"
-    ]
-  },
-  {
-    title: "AI Analytics Dashboard",
-    description: "Data visualization platform with machine learning insights, predictive analytics, and customizable reporting tools.",
-    image: "https://images.unsplash.com/photo-1697256200022-f61abccad430",
-    category: "Web Application",
-    technologies: ["Vue.js", "Python", "TensorFlow", "D3.js"],
-    features: [
-      "ML-powered insights",
-      "Custom report builder",
-      "Real-time monitoring",
-      "Predictive analytics"
-    ]
-  },
-  {
-    title: "Healthcare Platform",
-    description: "Digital health solutions featuring telemedicine integration, electronic health records, and patient management system.",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef",
-    category: "Web Development",
-    technologies: ["Angular", "Java Spring", "PostgreSQL", "WebRTC"],
-    features: [
-      "Video consultations",
-      "Electronic health records",
-      "Appointment scheduling",
-      "Prescription management"
-    ]
-  },
-  {
-    title: "Smart Home System",
-    description: "IoT control interface with automated scheduling, energy monitoring, and voice command integration.",
-    image: "https://images.unsplash.com/photo-1558002038-1055907df827",
-    category: "IoT",
-    technologies: ["React", "Node.js", "MQTT", "WebSocket"],
-    features: [
-      "Device automation",
-      "Energy monitoring",
-      "Voice commands",
-      "Security controls"
-    ]
-  },
-  {
-    title: "Educational Platform",
-    description: "E-learning solution with interactive courses, progress tracking, and virtual classroom capabilities.",
-    image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8",
-    category: "Web Application",
-    technologies: ["Next.js", "GraphQL", "MongoDB", "WebRTC"],
-    features: [
-      "Interactive courses",
-      "Progress tracking",
-      "Virtual classrooms",
-      "Assignment management"
-    ]
-  }
-]
+import { Button } from "@/components/ui/button"
 
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null)
+  const [projects, setProjects] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch('https://api.sheety.co/426094bd0b13567a6c990e63aff99e2e/projectApi/sheet1')
+        const data = await response.json()
+
+        const mappedProjects = data.sheet1.map(project => ({
+          title: project.title,
+          description: project.description,
+          image: project.screenshot1,
+          category: "Web Development", // Default as API doesn't provide category
+          technologies: project.techStack ? project.techStack.split(',').map(t => t.trim()) : [],
+          features: [ // Default features as API doesn't provide them
+            "Responsive Design",
+            "Modern UI/UX",
+            "Clean Code Architecture",
+            "Performance Optimized"
+          ],
+          liveLink: project.liveLink,
+          gitHubLink: project.gitHubLink
+        }))
+
+        setProjects(mappedProjects)
+      } catch (error) {
+        console.error("Error fetching projects:", error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchProjects()
+  }, [])
 
   return (
-    <section className="py-20 bg-card/50">
-      <div className="container mx-auto px-4">
+    <section className="py-24 bg-card/30 relative overflow-hidden" id="portfolio">
+      <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -102,84 +55,148 @@ const Portfolio = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 neon-glow">
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">
             Featured <span className="gradient-text">Projects</span>
           </h2>
-          <p className="text-muted-foreground">Showcasing our best work</p>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Showcasing our best work AND the value we deliver to our clients through innovative technology.
+          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="group relative overflow-hidden rounded-lg gradient-border cursor-pointer"
-              onClick={() => setSelectedProject(project)}
-            >
-              <img
-                alt={project.title}
-                className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-                src={project.image}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-6">
-                <div>
-                  <span className="text-primary text-sm font-medium mb-2 block">
-                    {project.category}
-                  </span>
-                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                  <p className="text-muted-foreground">{project.description}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-
-      <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-        <DialogContent className="sm:max-w-[700px]">
-          {selectedProject && (
-            <>
-              <DialogHeader>
-                <DialogTitle className="text-2xl gradient-text mb-4">{selectedProject.title}</DialogTitle>
-              </DialogHeader>
-              <div className="space-y-6">
-                <div className="relative h-[300px] overflow-hidden rounded-lg">
+        {loading ? (
+          <div className="flex justify-center items-center py-20">
+            <Loader2 className="h-12 w-12 animate-spin text-primary" />
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="group relative bg-card rounded-2xl overflow-hidden border border-white/5 hover:border-primary/20 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/5 cursor-pointer"
+                onClick={() => setSelectedProject(project)}
+              >
+                <div className="relative h-64 overflow-hidden">
                   <img
-                    src={selectedProject.image}
-                    alt={selectedProject.title}
-                    className="w-full h-full object-cover"
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    src={project.image}
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-                <div>
-                  <h4 className="text-lg font-semibold mb-2">About the Project</h4>
-                  <p className="text-muted-foreground">{selectedProject.description}</p>
-                </div>
-                <div>
-                  <h4 className="text-lg font-semibold mb-2">Technologies Used</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedProject.technologies.map((tech, index) => (
-                      <span
-                        key={index}
-                        className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm"
-                      >
+
+                <div className="p-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider">
+                      {project.category}
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">{project.title}</h3>
+                  <p className="text-muted-foreground line-clamp-2 mb-4">{project.description}</p>
+
+                  <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-white/5">
+                    {project.technologies.slice(0, 3).map((tech, i) => (
+                      <span key={i} className="text-xs text-muted-foreground bg-secondary px-2 py-1 rounded">
                         {tech}
                       </span>
                     ))}
+                    {project.technologies.length > 3 && (
+                      <span className="text-xs text-muted-foreground bg-secondary px-2 py-1 rounded">
+                        +{project.technologies.length - 3}
+                      </span>
+                    )}
                   </div>
                 </div>
-                <div>
-                  <h4 className="text-lg font-semibold mb-2">Key Features</h4>
-                  <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                    {selectedProject.features.map((feature, index) => (
-                      <li key={index}>{feature}</li>
-                    ))}
-                  </ul>
+              </motion.div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
+        <DialogContent className="sm:max-w-[800px] bg-card/95 backdrop-blur-xl border-white/10 p-0 overflow-hidden gap-0">
+          {selectedProject && (
+            <div className="flex flex-col h-full max-h-[90vh] overflow-y-auto">
+              <div className="relative h-64 w-full">
+                <img
+                  src={selectedProject.image}
+                  alt={selectedProject.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6">
+                  <h2 className="text-3xl font-bold text-white mb-2">{selectedProject.title}</h2>
+                  <span className="px-3 py-1 rounded-full bg-primary text-primary-foreground text-sm font-semibold">
+                    {selectedProject.category}
+                  </span>
                 </div>
               </div>
-            </>
+
+              <div className="p-8 space-y-8">
+                <div>
+                  <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
+                    <Layers className="h-5 w-5 text-primary" />
+                    Project Overview
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed text-lg">
+                    {selectedProject.description}
+                  </p>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                      <Code className="h-5 w-5 text-primary" />
+                      Tech Stack
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedProject.technologies.map((tech, index) => (
+                        <span
+                          key={index}
+                          className="px-4 py-2 rounded-lg bg-secondary text-secondary-foreground text-sm font-medium border border-white/5"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                      <ExternalLink className="h-5 w-5 text-primary" />
+                      Key Features
+                    </h3>
+                    <ul className="space-y-2">
+                      {selectedProject.features.map((feature, index) => (
+                        <li key={index} className="flex items-center text-sm text-muted-foreground">
+                          <span className="h-1.5 w-1.5 rounded-full bg-primary mr-2" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="flex gap-4 pt-4">
+                  {selectedProject.liveLink && (
+                    <a href={selectedProject.liveLink} target="_blank" rel="noopener noreferrer" className="flex-1">
+                      <Button className="w-full gradient-border">View Live Demo</Button>
+                    </a>
+                  )}
+                  {selectedProject.gitHubLink && (
+                    <a href={selectedProject.gitHubLink} target="_blank" rel="noopener noreferrer" className="flex-1">
+                      <Button variant="outline" className="w-full gap-2">
+                        <Github className="h-4 w-4" />
+                        View Code
+                      </Button>
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
           )}
         </DialogContent>
       </Dialog>

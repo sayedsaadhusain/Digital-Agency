@@ -1,14 +1,13 @@
-
 import React, { useState } from "react"
 import { motion } from "framer-motion"
-import { Code, Paintbrush, Search, Shield, Smartphone, Cloud, Database, ShoppingCart, Users } from "lucide-react";
+import { Code, Paintbrush, Search, Shield, Smartphone, Cloud, Database, ShoppingCart, Users, Check, ArrowRight } from "lucide-react";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-
+import { Button } from "@/components/ui/button"
 
 const services = [
   {
@@ -79,7 +78,7 @@ const services = [
   },
   {
     icon: Shield,
-    title: "Cybersecurity Solutions",
+    title: "Cybersecurity",
     description: "Protect your digital assets with industry-grade security",
     plans: [
       {
@@ -101,7 +100,7 @@ const services = [
   },
   {
     icon: Smartphone,
-    title: "Mobile App Development",
+    title: "Mobile Apps",
     description: "Build scalable and powerful mobile applications",
     plans: [
       {
@@ -145,7 +144,7 @@ const services = [
   },
   {
     icon: Database,
-    title: "Database Management",
+    title: "Database Mgmt",
     description: "Reliable and efficient database services",
     plans: [
       {
@@ -167,8 +166,8 @@ const services = [
   },
   {
     icon: ShoppingCart,
-    title: "E-commerce Development",
-    description: "Launch your online store with professional e-commerce solutions",
+    title: "E-commerce",
+    description: "Launch your online store with professional solutions",
     plans: [
       {
         name: "Starter",
@@ -211,26 +210,31 @@ const services = [
   }
 ];
 
-export default services;
-
-
 const Services = () => {
   const [selectedService, setSelectedService] = useState(null)
 
   return (
-    <section className="py-20">
-      <div className="container mx-auto px-4">
+    <section className="py-24 bg-background relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-16 max-w-3xl mx-auto"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 neon-glow">
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">
             Our <span className="gradient-text">Services</span>
           </h2>
-          <p className="text-muted-foreground">Comprehensive solutions for your digital needs</p>
+          <p className="text-xl text-muted-foreground">
+            Comprehensive digital solutions tailored to elevate your business. From concept to execution, we deliver excellence.
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -239,44 +243,67 @@ const Services = () => {
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-card p-6 rounded-lg gradient-border card-glow hover:scale-105 transition-transform duration-300 cursor-pointer"
+              className="group relative bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-white/5 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 cursor-pointer"
               onClick={() => setSelectedService(service)}
             >
-              <service.icon className="h-12 w-12 text-primary mb-4" />
-              <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
-              <p className="text-muted-foreground">{service.description}</p>
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+
+              <div className="relative z-10">
+                <div className="h-14 w-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <service.icon className="h-7 w-7 text-primary" />
+                </div>
+
+                <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">{service.title}</h3>
+                <p className="text-muted-foreground mb-6">{service.description}</p>
+
+                <div className="flex items-center text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                  View Plans <ArrowRight className="ml-2 h-4 w-4" />
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
       </div>
 
       <Dialog open={!!selectedService} onOpenChange={() => setSelectedService(null)}>
-        <DialogContent className="sm:max-w-[700px]">
+        <DialogContent className="sm:max-w-[900px] bg-card/95 backdrop-blur-xl border-white/10">
           {selectedService && (
             <>
               <DialogHeader>
-                <DialogTitle className="text-2xl gradient-text mb-4">
-                  {selectedService.title}
+                <DialogTitle className="text-3xl font-bold gradient-text mb-2 text-center">
+                  {selectedService.title} Plans
                 </DialogTitle>
+                <p className="text-center text-muted-foreground mb-8">Choose the perfect plan for your needs</p>
               </DialogHeader>
               <div className="grid md:grid-cols-3 gap-6">
                 {selectedService.plans.map((plan, index) => (
                   <div
                     key={index}
-                    className="bg-card p-6 rounded-lg gradient-border"
+                    className={`relative p-6 rounded-xl border ${index === 1
+                      ? 'bg-primary/10 border-primary/50 shadow-xl shadow-primary/10'
+                      : 'bg-card/50 border-white/10'
+                      }`}
                   >
-                    <h4 className="text-xl font-semibold mb-2">{plan.name}</h4>
-                    <p className="text-2xl font-bold gradient-text mb-4">{plan.price}</p>
-                    <ul className="space-y-2">
+                    {index === 1 && (
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full">
+                        MOST POPULAR
+                      </div>
+                    )}
+                    <h4 className="text-xl font-bold mb-2">{plan.name}</h4>
+                    <div className="text-3xl font-bold gradient-text mb-6">{plan.price}</div>
+                    <ul className="space-y-4 mb-8">
                       {plan.features.map((feature, i) => (
-                        <li key={i} className="flex items-center text-sm">
-                          <span className="h-1.5 w-1.5 rounded-full bg-primary mr-2" />
+                        <li key={i} className="flex items-start text-sm text-muted-foreground">
+                          <Check className="h-4 w-4 text-green-500 mr-2 mt-0.5 shrink-0" />
                           {feature}
                         </li>
                       ))}
                     </ul>
+                    <Button className={`w-full ${index === 1 ? 'bg-primary' : 'variant-outline'}`}>
+                      Get Started
+                    </Button>
                   </div>
                 ))}
               </div>
