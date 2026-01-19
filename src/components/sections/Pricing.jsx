@@ -5,10 +5,10 @@ import { Button } from "@/components/ui/button"
 
 const packages = [
     {
-        name: "Basic Package",
-        subtitle: "Starter Presence",
-        price: "₹8,999 – ₹12,999",
-        description: "Best for: Individuals, small businesses, startups",
+        name: "Starter",
+        subtitle: "Perfect for new businesses",
+        price: "₹24,999",
+        description: "Essential features to launch your digital presence.",
         icon: Layout,
         features: [
             "1–5 Page Modern Website",
@@ -25,10 +25,10 @@ const packages = [
         gradient: "from-blue-500 to-cyan-500"
     },
     {
-        name: "Standard Package",
-        subtitle: "Business Growth",
-        price: "₹18,999 – ₹25,999",
-        description: "Best for: Growing businesses, service providers",
+        name: "Professional",
+        subtitle: "For scaling businesses",
+        price: "₹59,999",
+        description: "Advanced features and design for growing brands.",
         icon: Zap,
         features: [
             "5–10 Page Website",
@@ -41,15 +41,15 @@ const packages = [
             "Google Analytics Setup",
             "Testimonials & Trust Sections",
         ],
-        delivery: "7–12 Days",
+        delivery: "10–14 Days",
         popular: true,
         gradient: "from-purple-500 to-pink-500"
     },
     {
-        name: "Premium Package",
-        subtitle: "High-Conversion Authority",
-        price: "₹39,999 – ₹65,999",
-        description: "Best for: Brands, agencies, ecommerce, serious founders",
+        name: "Enterprise",
+        subtitle: "For market leaders",
+        price: "Custom",
+        description: "Tailored solutions for large-scale operations.",
         icon: Star,
         features: [
             "Fully Custom Website (Unlimited Pages)",
@@ -61,10 +61,9 @@ const packages = [
             "Advanced SEO + Performance Optimization",
             "Security Setup + SSL Guidance",
             "Blog / CMS Integration",
-            "Payment Gateway (if required)",
-            "30 Days Free Support",
+            "Priority Support",
         ],
-        delivery: "15–25 Days",
+        delivery: "Custom Timeline",
         popular: false,
         gradient: "from-orange-500 to-red-500"
     }
@@ -83,8 +82,8 @@ const Pricing = () => {
     return (
         <section className="py-24 bg-background relative overflow-hidden" id="pricing">
             {/* Background Decor */}
-            <div className="absolute top-1/4 -left-64 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-1/4 -right-64 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-1/4 -left-64 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none animate-float" />
+            <div className="absolute bottom-1/4 -right-64 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none animate-float-delayed" />
 
             <div className="container mx-auto">
                 <motion.div
@@ -111,8 +110,8 @@ const Pricing = () => {
                             transition={{ duration: 0.8, delay: index * 0.1 }}
                             viewport={{ once: true }}
                             className={`relative bg-card rounded-2xl overflow-hidden border transition-all duration-300 hover:shadow-2xl ${pkg.popular
-                                    ? "border-primary/50 shadow-primary/10 scale-105 z-10"
-                                    : "border-white/5 hover:border-primary/20"
+                                ? "border-primary/50 shadow-primary/10 scale-105 z-10"
+                                : "border-border hover:border-primary/20"
                                 }`}
                         >
                             {pkg.popular && (
@@ -164,7 +163,7 @@ const Pricing = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8 }}
                         viewport={{ once: true }}
-                        className="bg-card/50 rounded-2xl p-8 border border-white/5"
+                        className="bg-card/50 rounded-2xl p-8 border border-border"
                     >
                         <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
                             <Shield className="h-5 w-5 text-green-500" />
@@ -191,7 +190,7 @@ const Pricing = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8 }}
                         viewport={{ once: true }}
-                        className="bg-card/50 rounded-2xl p-8 border border-white/5"
+                        className="bg-card/50 rounded-2xl p-8 border border-border"
                     >
                         <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
                             <Layout className="h-5 w-5 text-purple-500" />

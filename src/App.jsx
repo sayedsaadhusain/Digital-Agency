@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layout/Navbar"
 import { Footer } from "@/components/layout/Footer"
 import { Hero } from "@/components/sections/Hero"
 import { Services } from "@/components/sections/Services"
+import { Roadmap } from "@/components/sections/Roadmap"
 import { Portfolio } from "@/components/sections/Portfolio"
 import { Pricing } from "@/components/sections/Pricing"
 import { About } from "@/components/sections/About"
@@ -28,6 +29,9 @@ function App() {
         </section>
         <section id="services">
           <Services />
+        </section>
+        <section id="roadmap">
+          <Roadmap />
         </section>
         <section id="portfolio">
           <Portfolio />

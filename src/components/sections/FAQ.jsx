@@ -54,11 +54,11 @@ const FAQ = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                     viewport={{ once: true }}
-                    className="bg-card/30 backdrop-blur-sm rounded-2xl border border-white/5 p-8"
+                    className="bg-card/30 backdrop-blur-sm rounded-2xl border border-border p-8"
                 >
                     <Accordion type="single" collapsible className="w-full">
                         {faqs.map((faq, index) => (
-                            <AccordionItem key={index} value={`item-${index}`} className="border-white/5">
+                            <AccordionItem key={index} value={`item-${index}`} className="border-border">
                                 <AccordionTrigger className="text-lg font-medium hover:text-primary transition-colors text-left">
                                     {faq.question}
                                 </AccordionTrigger>

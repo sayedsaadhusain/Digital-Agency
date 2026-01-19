@@ -59,7 +59,7 @@ const About = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: stat.delay }}
               viewport={{ once: true }}
-              className="bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-white/5 text-center group hover:border-primary/20 transition-all duration-300"
+              className="bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border text-center group hover:border-primary/20 transition-all duration-300"
             >
               <div className="bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                 <stat.icon className="h-8 w-8 text-primary" />
@@ -85,7 +85,7 @@ const About = () => {
             <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl blur-lg opacity-30" />
             <img
               alt="Team collaboration"
-              className="relative rounded-2xl w-full shadow-2xl border border-white/10"
+              className="relative rounded-2xl w-full shadow-2xl border border-border"
               src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             />
           </motion.div>

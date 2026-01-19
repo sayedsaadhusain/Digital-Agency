@@ -46,7 +46,7 @@ const Portfolio = () => {
   }, [])
 
   return (
-    <section className="py-24 bg-card/30 relative overflow-hidden" id="portfolio">
+    <section className="py-24 bg-muted/30 relative overflow-hidden" id="portfolio">
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -76,7 +76,7 @@ const Portfolio = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group relative bg-card rounded-2xl overflow-hidden border border-white/5 hover:border-primary/20 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/5 cursor-pointer"
+                className="group relative bg-card rounded-2xl overflow-hidden border border-border hover:border-primary/20 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/5 cursor-pointer"
                 onClick={() => setSelectedProject(project)}
               >
                 <div className="relative h-64 overflow-hidden">
@@ -97,7 +97,7 @@ const Portfolio = () => {
                   <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">{project.title}</h3>
                   <p className="text-muted-foreground line-clamp-2 mb-4">{project.description}</p>
 
-                  <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-white/5">
+                  <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-border">
                     {project.technologies.slice(0, 3).map((tech, i) => (
                       <span key={i} className="text-xs text-muted-foreground bg-secondary px-2 py-1 rounded">
                         {tech}
@@ -117,7 +117,7 @@ const Portfolio = () => {
       </div>
 
       <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-        <DialogContent className="sm:max-w-[800px] bg-card/95 backdrop-blur-xl border-white/10 p-0 overflow-hidden gap-0">
+        <DialogContent className="sm:max-w-[800px] bg-card/95 backdrop-blur-xl border-border p-0 overflow-hidden gap-0">
           {selectedProject && (
             <div className="flex flex-col h-full max-h-[90vh] overflow-y-auto">
               <div className="relative h-64 w-full">
@@ -156,7 +156,7 @@ const Portfolio = () => {
                       {selectedProject.technologies.map((tech, index) => (
                         <span
                           key={index}
-                          className="px-4 py-2 rounded-lg bg-secondary text-secondary-foreground text-sm font-medium border border-white/5"
+                          className="px-4 py-2 rounded-lg bg-secondary text-secondary-foreground text-sm font-medium border border-border"
                         >
                           {tech}
                         </span>

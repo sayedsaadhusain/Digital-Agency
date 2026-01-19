@@ -17,12 +17,12 @@ const services = [
     plans: [
       {
         name: "Basic",
-        price: "$999",
+        price: "₹24,999",
         features: ["Single Page Website", "Mobile Responsive", "3 Revisions", "5 Pages"]
       },
       {
         name: "Professional",
-        price: "$2499",
+        price: "₹59,999",
         features: ["Multi-Page Website", "Mobile Responsive", "5 Revisions", "10 Pages", "SEO Optimization"]
       },
       {
@@ -39,12 +39,12 @@ const services = [
     plans: [
       {
         name: "Starter",
-        price: "$499",
+        price: "₹14,999",
         features: ["Landing Page Design", "2 Revisions", "Mobile Optimized"]
       },
       {
         name: "Professional",
-        price: "$1199",
+        price: "₹34,999",
         features: ["Website Redesign", "5 Revisions", "Prototype + Wireframes"]
       },
       {
@@ -61,12 +61,12 @@ const services = [
     plans: [
       {
         name: "Starter",
-        price: "$299",
+        price: "₹9,999",
         features: ["Basic SEO Audit", "Keyword Optimization", "Meta Tags Setup"]
       },
       {
         name: "Professional",
-        price: "$799",
+        price: "₹24,999",
         features: ["On-Page SEO", "Off-Page SEO", "Content Optimization"]
       },
       {
@@ -83,12 +83,12 @@ const services = [
     plans: [
       {
         name: "Basic",
-        price: "$499",
+        price: "₹19,999",
         features: ["Vulnerability Assessment", "Firewall Setup", "Basic Monitoring"]
       },
       {
         name: "Professional",
-        price: "$1299",
+        price: "₹49,999",
         features: ["Penetration Testing", "24/7 Threat Monitoring", "Security Hardening"]
       },
       {
@@ -105,12 +105,12 @@ const services = [
     plans: [
       {
         name: "Basic",
-        price: "$1999",
+        price: "₹49,999",
         features: ["Single Platform App", "Basic UI/UX", "3 Revisions"]
       },
       {
         name: "Professional",
-        price: "$4999",
+        price: "₹1,49,999",
         features: ["iOS & Android App", "Custom UI/UX", "API Integration"]
       },
       {
@@ -127,12 +127,12 @@ const services = [
     plans: [
       {
         name: "Starter",
-        price: "$399",
+        price: "₹14,999",
         features: ["Cloud Migration Consultation", "AWS/GCP Setup", "Basic Training"]
       },
       {
         name: "Professional",
-        price: "$999",
+        price: "₹34,999",
         features: ["Cloud Architecture Design", "Load Balancing", "Backup Solutions"]
       },
       {
@@ -149,12 +149,12 @@ const services = [
     plans: [
       {
         name: "Basic",
-        price: "$299",
+        price: "₹9,999",
         features: ["Database Setup", "Data Backup", "Performance Tuning"]
       },
       {
         name: "Professional",
-        price: "$799",
+        price: "₹29,999",
         features: ["Data Migration", "Cloud Database Management", "Optimization Reports"]
       },
       {
@@ -171,12 +171,12 @@ const services = [
     plans: [
       {
         name: "Starter",
-        price: "$999",
+        price: "₹29,999",
         features: ["Shopify Setup", "5 Products Listing", "Payment Gateway Integration"]
       },
       {
         name: "Professional",
-        price: "$2499",
+        price: "₹79,999",
         features: ["Custom E-commerce Website", "Inventory Management", "Coupons & Discounts Setup"]
       },
       {
@@ -193,12 +193,12 @@ const services = [
     plans: [
       {
         name: "Basic",
-        price: "$699",
+        price: "₹19,999",
         features: ["Contact Management", "Lead Tracking", "Email Integration"]
       },
       {
         name: "Professional",
-        price: "$1799",
+        price: "₹54,999",
         features: ["Sales Pipeline Automation", "Advanced Reporting", "Mobile Access"]
       },
       {
@@ -217,8 +217,8 @@ const Services = () => {
     <section className="py-24 bg-background relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-float-delayed"></div>
       </div>
 
       <div className="container mx-auto relative z-10">
@@ -245,7 +245,7 @@ const Services = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group relative bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-white/5 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 cursor-pointer"
+              className="group relative bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 cursor-pointer"
               onClick={() => setSelectedService(service)}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
@@ -268,7 +268,7 @@ const Services = () => {
       </div>
 
       <Dialog open={!!selectedService} onOpenChange={() => setSelectedService(null)}>
-        <DialogContent className="sm:max-w-[900px] bg-card/95 backdrop-blur-xl border-white/10">
+        <DialogContent className="sm:max-w-[900px] bg-card/95 backdrop-blur-xl border-border">
           {selectedService && (
             <>
               <DialogHeader>
@@ -283,7 +283,7 @@ const Services = () => {
                     key={index}
                     className={`relative p-6 rounded-xl border ${index === 1
                       ? 'bg-primary/10 border-primary/50 shadow-xl shadow-primary/10'
-                      : 'bg-card/50 border-white/10'
+                      : 'bg-card/50 border-border'
                       }`}
                   >
                     {index === 1 && (

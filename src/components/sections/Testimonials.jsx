@@ -53,7 +53,7 @@ const Testimonials = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-white/5 hover:border-primary/20 transition-all duration-300 relative group"
+              className="bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border hover:border-primary/20 transition-all duration-300 relative group"
             >
               <Quote className="absolute top-8 right-8 h-8 w-8 text-primary/20 group-hover:text-primary/40 transition-colors" />
 

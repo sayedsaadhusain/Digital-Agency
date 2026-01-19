@@ -93,7 +93,7 @@ const Blog = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-card rounded-2xl overflow-hidden border border-white/5 hover:border-primary/20 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/5 flex flex-col group cursor-pointer"
+              className="bg-card rounded-2xl overflow-hidden border border-border hover:border-primary/20 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/5 flex flex-col group cursor-pointer"
               onClick={() => setSelectedPost(post)}
             >
               <div className="relative h-56 overflow-hidden">
@@ -103,7 +103,7 @@ const Blog = () => {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
-                <div className="absolute top-4 left-4 bg-background/80 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium border border-white/10">
+                <div className="absolute top-4 left-4 bg-background/80 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium border border-border">
                   Tech Trends
                 </div>
               </div>
@@ -130,7 +130,7 @@ const Blog = () => {
                   {post.excerpt}
                 </p>
 
-                <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
+                <div className="flex items-center justify-between mt-auto pt-4 border-t border-border">
                   <div className="flex items-center gap-2">
                     <div className="h-8 w-8 rounded-full bg-secondary flex items-center justify-center">
                       <User className="h-4 w-4 text-primary" />
@@ -148,7 +148,7 @@ const Blog = () => {
       </div>
 
       <Dialog open={!!selectedPost} onOpenChange={() => setSelectedPost(null)}>
-        <DialogContent className="sm:max-w-[700px] bg-card/95 backdrop-blur-xl border-white/10 p-0 overflow-hidden">
+        <DialogContent className="sm:max-w-[700px] bg-card/95 backdrop-blur-xl border-border p-0 overflow-hidden">
           {selectedPost && (
             <div className="flex flex-col h-full max-h-[90vh] overflow-y-auto">
               <div className="relative h-64 w-full">
