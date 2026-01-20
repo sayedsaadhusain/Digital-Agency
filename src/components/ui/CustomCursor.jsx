@@ -1,62 +1,135 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
 
 const CustomCursor = () => {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-    const [isHovering, setIsHovering] = useState(false);
+    const cursorRef = useRef(null);
 
     useEffect(() => {
-        const updateMousePosition = (e) => {
-            setMousePosition({ x: e.clientX, y: e.clientY });
+        if (!cursorRef.current) return;
+
+        // Mobile check
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            return;
+        }
+
+        const cursor = cursorRef.current;
+        const root = document.body;
+
+        // State variables to track movement and rotation
+        const position = {
+            distanceX: 0,
+            distanceY: 0,
+            distance: 0,
+            pointerX: 0,
+            pointerY: 0,
+        };
+        let previousPointerX = 0;
+        let previousPointerY = 0;
+        let angle = 0;
+        let previousAngle = 0;
+        let angleDisplace = 0;
+        const degrees = 57.296;
+        const cursorSize = 20;
+
+        // Initialize cursor styles
+        Object.assign(cursor.style, {
+            boxSizing: 'border-box',
+            position: 'fixed',
+            top: '0px',
+            left: `${-cursorSize / 2}px`,
+            zIndex: '2147483647',
+            width: `${cursorSize}px`,
+            height: `${cursorSize}px`,
+            transition: '250ms, transform 100ms',
+            userSelect: 'none',
+            pointerEvents: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+        });
+        cursor.removeAttribute("hidden");
+
+        const rotate = (position) => {
+            let unsortedAngle = Math.atan(Math.abs(position.distanceY) / Math.abs(position.distanceX)) * degrees;
+
+            previousAngle = angle;
+
+            if (position.distanceX <= 0 && position.distanceY >= 0) {
+                angle = 90 - unsortedAngle + 0;
+            } else if (position.distanceX < 0 && position.distanceY < 0) {
+                angle = unsortedAngle + 90;
+            } else if (position.distanceX >= 0 && position.distanceY <= 0) {
+                angle = 90 - unsortedAngle + 180;
+            } else if (position.distanceX > 0 && position.distanceY > 0) {
+                angle = unsortedAngle + 270;
+            }
+
+            if (isNaN(angle)) {
+                angle = previousAngle;
+            } else {
+                if (angle - previousAngle <= -270) {
+                    angleDisplace += 360 + angle - previousAngle;
+                } else if (angle - previousAngle >= 270) {
+                    angleDisplace += angle - previousAngle - 360;
+                } else {
+                    angleDisplace += angle - previousAngle;
+                }
+            }
+            cursor.style.transform += ` rotate(${angleDisplace}deg)`;
+
+            setTimeout(() => {
+                let modAngle = angleDisplace >= 0 ? angleDisplace % 360 : 360 + angleDisplace % 360;
+                if (modAngle >= 45 && modAngle < 135) {
+                    cursor.style.left = `${-cursorSize}px`;
+                    cursor.style.top = `${-cursorSize / 2}px`;
+                } else if (modAngle >= 135 && modAngle < 225) {
+                    cursor.style.left = `${-cursorSize / 2}px`;
+                    cursor.style.top = `${-cursorSize}px`;
+                } else if (modAngle >= 225 && modAngle < 315) {
+                    cursor.style.left = '0px';
+                    cursor.style.top = `${-cursorSize / 2}px`;
+                } else {
+                    cursor.style.left = `${-cursorSize / 2}px`;
+                    cursor.style.top = '0px';
+                }
+            }, 0);
         };
 
-        const handleMouseOver = (e) => {
-            if (
-                e.target.tagName === 'BUTTON' ||
-                e.target.tagName === 'A' ||
-                e.target.closest('button') ||
-                e.target.closest('a') ||
-                e.target.classList.contains('cursor-hover')
-            ) {
-                setIsHovering(true);
+        const move = (event) => {
+            previousPointerX = position.pointerX;
+            previousPointerY = position.pointerY;
+
+            // Use client coordinates for fixed positioning
+            position.pointerX = event.clientX;
+            position.pointerY = event.clientY;
+
+            position.distanceX = previousPointerX - position.pointerX;
+            position.distanceY = previousPointerY - position.pointerY;
+
+            position.distance = Math.sqrt(position.distanceY ** 2 + position.distanceX ** 2);
+
+            cursor.style.transform = `translate3d(${position.pointerX}px, ${position.pointerY}px, 0)`;
+
+            if (position.distance > 1) {
+                rotate(position);
             } else {
-                setIsHovering(false);
+                cursor.style.transform += ` rotate(${angleDisplace}deg)`;
             }
         };
 
-        window.addEventListener('mousemove', updateMousePosition);
-        window.addEventListener('mouseover', handleMouseOver);
+        window.addEventListener('mousemove', move);
 
         return () => {
-            window.removeEventListener('mousemove', updateMousePosition);
-            window.removeEventListener('mouseover', handleMouseOver);
+            window.removeEventListener('mousemove', move);
         };
     }, []);
 
-    const ZOOM_FACTOR = 0.8;
-
     return (
-        <>
-            <motion.div
-                className="hidden md:block fixed top-0 left-0 w-4 h-4 bg-primary rounded-full pointer-events-none z-[9999] mix-blend-difference"
-                animate={{
-                    x: (mousePosition.x / ZOOM_FACTOR) - 8,
-                    y: (mousePosition.y / ZOOM_FACTOR) - 8,
-                    scale: isHovering ? 0.5 : 1,
-                }}
-                transition={{ type: 'tween', ease: 'backOut', duration: 0.1 }}
-            />
-            <motion.div
-                className="hidden md:block fixed top-0 left-0 w-12 h-12 border-2 border-primary rounded-full pointer-events-none z-[9998] mix-blend-difference"
-                animate={{
-                    x: (mousePosition.x / ZOOM_FACTOR) - 24,
-                    y: (mousePosition.y / ZOOM_FACTOR) - 24,
-                    scale: isHovering ? 1.5 : 1,
-                    opacity: isHovering ? 1 : 0.5,
-                }}
-                transition={{ type: 'spring', stiffness: 150, damping: 15, mass: 0.5 }}
-            />
-        </>
+        <div className="curzr" ref={cursorRef} hidden>
+            {/* Arrow SVG */}
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 0L20 20L10 15L0 20L10 0Z" fill="#3b82f6" />
+            </svg>
+        </div>
     );
 };
 

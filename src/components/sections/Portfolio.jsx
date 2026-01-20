@@ -73,6 +73,12 @@ const Portfolio = () => {
           <div className="flex justify-center items-center py-20">
             <Loader2 className="h-12 w-12 animate-spin text-primary" />
           </div>
+        ) : projects.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-xl text-muted-foreground">
+              No projects found. Please add them via the Admin Panel and check database permissions.
+            </p>
+          </div>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
