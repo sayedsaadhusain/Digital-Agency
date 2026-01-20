@@ -38,7 +38,7 @@ const CustomCursor = () => {
     return (
         <>
             <motion.div
-                className="fixed top-0 left-0 w-4 h-4 bg-primary rounded-full pointer-events-none z-[9999] mix-blend-difference"
+                className="hidden md:block fixed top-0 left-0 w-4 h-4 bg-primary rounded-full pointer-events-none z-[9999] mix-blend-difference"
                 animate={{
                     x: (mousePosition.x / ZOOM_FACTOR) - 8,
                     y: (mousePosition.y / ZOOM_FACTOR) - 8,
@@ -47,7 +47,7 @@ const CustomCursor = () => {
                 transition={{ type: 'tween', ease: 'backOut', duration: 0.1 }}
             />
             <motion.div
-                className="fixed top-0 left-0 w-12 h-12 border-2 border-primary rounded-full pointer-events-none z-[9998] mix-blend-difference"
+                className="hidden md:block fixed top-0 left-0 w-12 h-12 border-2 border-primary rounded-full pointer-events-none z-[9998] mix-blend-difference"
                 animate={{
                     x: (mousePosition.x / ZOOM_FACTOR) - 24,
                     y: (mousePosition.y / ZOOM_FACTOR) - 24,

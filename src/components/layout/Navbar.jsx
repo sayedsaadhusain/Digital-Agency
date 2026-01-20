@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import { ThemeToggle } from "@/components/theme/theme-toggle"
+import { ProjectKickoffModal } from "@/components/forms/ProjectKickoffModal"
 
 const navItems = [
   { name: "Home", to: "home" },
@@ -33,7 +34,7 @@ const Navbar = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? "bg-background/80 backdrop-blur-lg shadow-lg" : "bg-transparent"
+      className={`fixed w-full z-50 transition-all duration-300 ${isScrolled || isMobileMenuOpen ? "bg-background/80 backdrop-blur-lg shadow-lg border-b border-border" : "bg-transparent"
         }`}
     >
       <div className="container mx-auto">
@@ -65,14 +66,9 @@ const Navbar = () => {
               </Link>
             ))}
             <ThemeToggle />
-            <a
-              href="https://wa.me/917266914546?text=Hi,%20I%20am%20interested%20in%20your%20services.%20Please%20provide%20a%20quote."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block"
-            >
-              <Button className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white border-0 hover:opacity-90 transition-opacity">Get a Quote</Button>
-            </a>
+            <ProjectKickoffModal>
+              <Button className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white border-0 hover:opacity-90 transition-opacity">Start Project</Button>
+            </ProjectKickoffModal>
           </div>
 
           {/* Mobile Menu Button */}
@@ -97,7 +93,7 @@ const Navbar = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden"
+              className="md:hidden bg-black/95 backdrop-blur-xl border-t border-white/10"
             >
               <div className="py-4 space-y-4">
                 {navItems.map((item) => (
@@ -114,14 +110,9 @@ const Navbar = () => {
                     {item.name}
                   </Link>
                 ))}
-                <a
-                  href="https://wa.me/917266914546?text=Hi,%20I%20am%20interested%20in%20your%20services.%20Please%20provide%20a%20quote."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full"
-                >
-                  <Button className="w-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white border-0 hover:opacity-90 transition-opacity">Get a Quote</Button>
-                </a>
+                <ProjectKickoffModal>
+                  <Button className="w-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white border-0 hover:opacity-90 transition-opacity">Start Project</Button>
+                </ProjectKickoffModal>
               </div>
             </motion.div>
           )}

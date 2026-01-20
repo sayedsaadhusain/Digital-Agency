@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import { Search, Map, Palette, Code, ShieldCheck, Rocket, Headphones, ArrowRight, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { RoadmapCard } from "./RoadmapCard"
+import { ProjectKickoffModal } from "@/components/forms/ProjectKickoffModal"
 
 const roadmapSteps = [
     {
@@ -220,16 +221,18 @@ const Roadmap = () => {
                 >
                     <div className="relative inline-block group">
                         <div className="absolute inset-0 bg-gradient-to-r from-primary to-purple-600 rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
-                        <div className="relative bg-card/80 backdrop-blur-2xl rounded-full p-2 border border-primary/20">
-                            <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8 px-8 py-6 md:py-8 rounded-full bg-background/50">
-                                <div className="text-left">
+                        <div className="relative bg-card/80 backdrop-blur-2xl rounded-3xl md:rounded-full p-2 border border-primary/20">
+                            <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8 px-8 py-8 md:py-8 rounded-2xl md:rounded-full bg-background/50">
+                                <div className="text-left text-center md:text-left">
                                     <h3 className="text-2xl font-bold mb-1">Ready to scale?</h3>
                                     <p className="text-muted-foreground text-sm">Join the league of successful brands today.</p>
                                 </div>
                                 <div className="h-10 w-px bg-border hidden md:block" />
-                                <Button size="lg" className="rounded-full px-8 h-14 text-lg bg-primary hover:bg-primary/90 shadow-lg shadow-primary/25 hover:shadow-primary/50 transition-all hover:scale-105">
-                                    Start Your Project <ArrowRight className="ml-2 h-5 w-5" />
-                                </Button>
+                                <ProjectKickoffModal>
+                                    <Button size="lg" className="rounded-full px-8 h-14 text-lg bg-primary hover:bg-primary/90 shadow-lg shadow-primary/25 hover:shadow-primary/50 transition-all hover:scale-105 cursor-pointer">
+                                        Start Your Project <ArrowRight className="ml-2 h-5 w-5" />
+                                    </Button>
+                                </ProjectKickoffModal>
                             </div>
                         </div>
                     </div>

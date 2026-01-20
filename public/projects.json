@@ -1,0 +1,197 @@
+[
+    {
+        "id": 1,
+        "title": "Client tracker",
+        "description": "Client Hunter is a lead generation and outreach tool designed to help freelancers.",
+        "techStack": [
+            "React",
+            "Tailwind",
+            "SheetBest API"
+        ],
+        "githubLink": "https://github.com/yourname/portfolio",
+        "liveLink": "https://client-tracker-dun.vercel.app/",
+        "screenshots": [
+            "https://images.unsplash.com/photo-1749139324175-3f614d73d4a2?q=80&w=1972&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1749139331009-31c6d334e3ed?q=80&w=2032&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1749139319430-cb046a5890d1?q=80&w=1978&auto=format&fit=crop"
+        ]
+    },
+    {
+        "id": 2,
+        "title": "PortfoMagic",
+        "description": "Create a personalized, stunning portfolio in minutes. Showcase your skills and projects like never before.",
+        "techStack": [
+            "React",
+            "LocalStorage",
+            "Tailwind"
+        ],
+        "githubLink": "https://github.com/sayedsaadhusain/PortfoMagic",
+        "liveLink": "https://portfomagic.netlify.app/",
+        "screenshots": [
+            "https://images.unsplash.com/photo-1749142462044-b9074fe71665?q=80&w=2007&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1749142468164-7c080005ee7e?q=80&w=2011&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1749142549284-83ff173fddf9?q=80&w=2009&auto=format&fit=crop"
+        ]
+    },
+    {
+        "id": 3,
+        "title": "CoachPro",
+        "description": "CoachPro empowers coaches to manage clients, sessions, payments, and growth effortlessly.",
+        "techStack": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "API"
+        ],
+        "githubLink": null,
+        "liveLink": "https://madrasaalfalah.netlify.app/",
+        "screenshots": [
+            "https://images.unsplash.com/photo-1749141202153-1ace8ef78135?q=80&w=2040&auto=format&fit=crop",
+            "https://i.imgur.com/b2c3d4.png",
+            "https://i.imgur.com/c3d4e5.png"
+        ]
+    },
+    {
+        "id": 4,
+        "title": "E-Commerce UI",
+        "description": "Frontend of an e-commerce website with cart & product pages.",
+        "techStack": [
+            "React",
+            "Tailwind",
+            "Redux"
+        ],
+        "githubLink": "https://github.com/yourname/ecommerce-ui",
+        "liveLink": "https://shopeasy.vercel.app",
+        "screenshots": [
+            "https://images.unsplash.com/photo-1747934282792-9bea5bbfbbd3?w=600&auto=format&fit=crop",
+            "https://i.imgur.com/ecom2.png",
+            "https://i.imgur.com/ecom3.png"
+        ]
+    },
+    {
+        "id": 5,
+        "title": "Solar Spot",
+        "description": "Solar Spot is a location-based web platform designed to streamline the solar panel installation process in Lucknow.",
+        "techStack": [
+            "React",
+            "Tailwind",
+            "Node.js",
+            "Google Maps API",
+            "Vercel"
+        ],
+        "githubLink": null,
+        "liveLink": "https://solarspot.in/",
+        "screenshots": [
+            "https://images.unsplash.com/photo-1747933849574-35b2b86292fa?w=1000&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1575936123452-b67c3203c357?q=80&w=1170&auto=format&fit=crop",
+            "https://www.dropbox.com/scl/fi/ksn0gjq2mut30n26q5mt9/Screenshot_2025-05-21-16-51-13-00_39867a06fcfa20da4b70e0af2aba501c.jpg"
+        ]
+    },
+    {
+        "id": 6,
+        "title": "Relasto",
+        "description": "Find a perfect property where you'll love to live.",
+        "techStack": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "API"
+        ],
+        "githubLink": "https://github.com/sayedsaadhusain/real-state-property",
+        "liveLink": "https://real-state-property-mauve.vercel.app/",
+        "screenshots": [
+            "https://images.unsplash.com/photo-1747934240427-95bb9c41588c?w=600&auto=format&fit=crop"
+        ]
+    },
+    {
+        "id": 7,
+        "title": "Quran Reader App",
+        "description": "Multi-language Quran reader with translations and search.",
+        "techStack": [
+            "React",
+            "API",
+            "Tailwind",
+            "i18n"
+        ],
+        "githubLink": "https://github.com/yourname/quran-reader",
+        "liveLink": "https://v0-quran-reader-app-ten.vercel.app/",
+        "screenshots": [
+            "https://images.unsplash.com/photo-1751559387544-d21912dd7dfd?q=80&w=1632&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1751559134263-143eed881c60?q=80&w=1632&auto=format&fit=crop"
+        ]
+    },
+    {
+        "id": 8,
+        "title": "Flexlinen E-Commerce",
+        "description": "Frontend of an e-commerce website with cart & product pages.",
+        "techStack": [
+            "React",
+            "Tailwind",
+            "Redux"
+        ],
+        "githubLink": "https://github.com/yourname/ecommerce-ui",
+        "liveLink": "https://flexlinen.com/",
+        "screenshots": [
+            "https://images.unsplash.com/photo-1751560293632-189228437d8f?q=80&w=1632&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1751560373735-8e5be02e370a?q=80&w=1632&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1751560369946-627a2205f8d0?q=80&w=1632&auto=format&fit=crop"
+        ]
+    },
+    {
+        "id": 9,
+        "title": "Isavii – 15 Min Fashion Delivery",
+        "description": "Hyperlocal fashion delivery platform for instant clothing needs.",
+        "techStack": [
+            "React",
+            "Tailwind",
+            "Node.js",
+            "Firebase",
+            "Maps API"
+        ],
+        "githubLink": null,
+        "liveLink": "https://isavii.in",
+        "screenshots": [
+            "https://images.unsplash.com/photo-1767013990407-5500cf608c57?q=80&w=2103&auto=format&fit=crop"
+        ]
+    },
+    {
+        "id": 10,
+        "title": "Tulkash Travels - Kashmir Cabs",
+        "description": "Modern cab booking platform focused on trust, clarity, and conversions for Kashmir taxi services.",
+        "techStack": [
+            "React",
+            "Vite",
+            "Framer Motion",
+            "Tailwind",
+            "Laravel",
+            "PHP",
+            "FilamentPHP",
+            "Pusher",
+            "reCAPTCHA"
+        ],
+        "githubLink": "https://github.com/Ali786-stu/Tulkash-Cab-Rental",
+        "liveLink": "https://cab.tulkash.com/",
+        "screenshots": [
+            "https://images.unsplash.com/photo-1768562887296-b6cf4c62a675?q=80&w=1456&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1768563109354-d8988f3ac8e8?q=80&w=1453&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1768563211939-064962aa5dbd?q=80&w=1992&auto=format&fit=crop"
+        ]
+    },
+    {
+        "id": 11,
+        "title": "Hygiene",
+        "description": "Clean, trust-focused e-commerce website for hygiene and safety masks built on Shopify.",
+        "techStack": [
+            "Shopify",
+            "Liquid",
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "githubLink": null,
+        "liveLink": "https://maskhygiene.myshopify.com/",
+        "screenshots": [
+            "https://images.unsplash.com/photo-1768767787869-43fb927699cf?q=80&w=1456&auto=format&fit=crop"
+        ]
+    }
+]

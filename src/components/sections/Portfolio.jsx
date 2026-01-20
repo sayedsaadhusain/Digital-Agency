@@ -7,6 +7,8 @@ import {
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 
+import { supabase } from "@/lib/supabase"
+
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null)
   const [projects, setProjects] = useState([])
@@ -15,23 +17,27 @@ const Portfolio = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch('https://api.sheety.co/426094bd0b13567a6c990e63aff99e2e/projectApi/sheet1')
-        const data = await response.json()
+        const { data, error } = await supabase
+          .from('projects')
+          .select('*')
+          .order('created_at', { ascending: false })
 
-        const mappedProjects = data.sheet1.map(project => ({
+        if (error) throw error
+
+        const mappedProjects = (data || []).map(project => ({
           title: project.title,
           description: project.description,
-          image: project.screenshot1,
-          category: "Web Development", // Default as API doesn't provide category
-          technologies: project.techStack ? project.techStack.split(',').map(t => t.trim()) : [],
-          features: [ // Default features as API doesn't provide them
+          image: project.images?.[0] || "",
+          category: project.category || "Web Development",
+          technologies: project.tech_stack || [],
+          features: [
             "Responsive Design",
             "Modern UI/UX",
             "Clean Code Architecture",
             "Performance Optimized"
           ],
-          liveLink: project.liveLink,
-          gitHubLink: project.gitHubLink
+          liveLink: project.live_link,
+          gitHubLink: project.github_link
         }))
 
         setProjects(mappedProjects)

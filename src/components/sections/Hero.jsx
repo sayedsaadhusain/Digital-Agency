@@ -3,6 +3,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, CheckCircle, Star, Phone } from "lucide-react"
 import { Link } from "react-scroll"
+import { AuditFormModal } from "@/components/forms/AuditFormModal"
 
 const Hero = () => {
   const [text, setText] = useState("")
@@ -42,7 +43,7 @@ const Hero = () => {
   }, [text, isDeleting, loopNum, typingSpeed, words])
 
   return (
-    <section className="relative min-h-screen flex items-center pt-20 pb-20 overflow-hidden hero-pattern">
+    <section className="relative min-h-screen flex items-center pt-32 pb-20 md:pt-20 overflow-hidden hero-pattern">
       <div className="container mx-auto relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
@@ -55,7 +56,7 @@ const Hero = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
               </span>
-              <span className="text-sm font-medium text-primary-foreground/80">Available for new projects</span>
+              <span className="text-sm font-medium text-white">Available for new projects</span>
             </div>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight min-h-[160px] md:min-h-[220px] lg:min-h-[240px]">
@@ -69,12 +70,12 @@ const Hero = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <a href="https://calendly.com/" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="w-full sm:w-auto text-lg px-8 py-6 bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25">
+              <AuditFormModal>
+                <Button size="lg" className="w-full sm:w-auto text-lg px-8 py-6 bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25 cursor-pointer">
                   Get a Free Website Audit
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-              </a>
+              </AuditFormModal>
               <Link to="portfolio" smooth={true} duration={500}>
                 <Button size="lg" variant="outline" className="w-full sm:w-auto text-lg px-8 py-6 border-border hover:bg-white/5">
                   See Case Studies →

@@ -1,63 +1,37 @@
-
 import React from "react"
+import { Routes, Route } from "react-router-dom"
 import { Toaster } from "@/components/ui/toaster"
-import { Navbar } from "@/components/layout/Navbar"
-import { Footer } from "@/components/layout/Footer"
-import { Hero } from "@/components/sections/Hero"
-import { Services } from "@/components/sections/Services"
-import { Roadmap } from "@/components/sections/Roadmap"
-import { Portfolio } from "@/components/sections/Portfolio"
-import { Pricing } from "@/components/sections/Pricing"
-import { About } from "@/components/sections/About"
-import { Testimonials } from "@/components/sections/Testimonials"
-import { Blog } from "@/components/sections/Blog"
-import { ContactForm } from "@/components/sections/ContactForm"
-import { FAQ } from "@/components/sections/FAQ"
-import { CustomCursor } from "@/components/ui/CustomCursor"
-import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat"
+import { LandingPage } from "@/pages/LandingPage"
+import { AdminLayout } from "@/components/admin/AdminLayout"
+import { AdminLogin } from "@/pages/admin/Login"
+import { Dashboard } from "@/pages/admin/Dashboard"
+
+import { BlogList } from "@/pages/admin/BlogList"
+import { BlogEditor } from "@/pages/admin/BlogEditor"
+import { ProjectsList } from "@/pages/admin/ProjectsList"
+import { ProjectForm } from "@/pages/admin/ProjectForm"
 
 function App() {
   return (
-    <div className="min-h-screen bg-background text-foreground selection:bg-primary/30 cursor-none">
-      <CustomCursor />
-      <WhatsAppFloat />
+    <>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="projects" element={<ProjectsList />} />
+          <Route path="projects/new" element={<ProjectForm />} />
+          <Route path="projects/:id" element={<ProjectForm />} />
+          <Route path="blog" element={<BlogList />} />
+          <Route path="blog/new" element={<BlogEditor />} />
+          <Route path="blog/:id" element={<BlogEditor />} />
+        </Route>
+      </Routes>
       <Toaster />
-      <Navbar />
-      <main>
-        <section id="home">
-          <Hero />
-        </section>
-        <section id="services">
-          <Services />
-        </section>
-        <section id="roadmap">
-          <Roadmap />
-        </section>
-        <section id="portfolio">
-          <Portfolio />
-        </section>
-        <section id="pricing">
-          <Pricing />
-        </section>
-        <section id="about">
-          <About />
-        </section>
-        <section id="testimonials">
-          <Testimonials />
-        </section>
-        <section id="faq">
-          <FAQ />
-        </section>
-        <section id="blog">
-          <Blog />
-        </section>
-        <section id="contact">
-          <ContactForm />
-        </section>
-      </main>
-      <Footer />
-    </div>
+    </>
   )
 }
 
 export default App
+
+

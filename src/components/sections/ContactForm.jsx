@@ -72,7 +72,7 @@ const ContactForm = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-lg">Email Us</h4>
-                    <p className="text-muted-foreground">contact@brandignite.com</p>
+                    <p className="text-muted-foreground">sayedsaadhusain@gmail.com</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
