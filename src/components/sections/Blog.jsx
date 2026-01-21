@@ -177,7 +177,7 @@ const Blog = () => {
 
                 <div className="prose prose-invert max-w-none">
                   {/* In a real app we'd use a markdown parser or HTML dangerousSetInnerHTML (sanitized) */}
-                  <div className="whitespace-pre-line text-muted-foreground leading-loose text-lg" dangerouslySetInnerHTML={{ __html: selectedPost.content }} />
+                  <div className="text-muted-foreground leading-loose text-lg" dangerouslySetInnerHTML={{ __html: selectedPost.content }} />
                 </div>
               </div>
             </div>

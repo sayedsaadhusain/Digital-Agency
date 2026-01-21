@@ -11,14 +11,14 @@ module.exports = {
 		container: {
 			center: true,
 			padding: {
-				DEFAULT: '3rem',
+				DEFAULT: '2rem',
 				sm: '5rem',
 				lg: '8rem',
 				xl: '10rem',
 				'2xl': '12rem',
 			},
 			screens: {
-				'2xl': '1280px',
+				'2xl': '1480px',
 			},
 		},
 		extend: {
@@ -88,5 +88,8 @@ module.exports = {
 			},
 		},
 	},
-	plugins: [require('tailwindcss-animate')],
+	plugins: [
+		require('tailwindcss-animate'),
+		require('@tailwindcss/typography'),
+	],
 };

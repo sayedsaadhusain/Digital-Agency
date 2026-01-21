@@ -107,6 +107,8 @@
 /* Smooth Scrolling */
 html {
   scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--muted)) hsl(var(--background));
 }
 
 /* Custom Scrollbar */
