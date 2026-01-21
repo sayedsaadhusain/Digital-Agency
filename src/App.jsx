@@ -11,6 +11,8 @@ import { BlogEditor } from "@/pages/admin/BlogEditor"
 import { ProjectsList } from "@/pages/admin/ProjectsList"
 import { ProjectForm } from "@/pages/admin/ProjectForm"
 
+import { NotFound } from "@/pages/NotFound"
+
 function App() {
   return (
     <>
@@ -26,6 +28,7 @@ function App() {
           <Route path="blog/new" element={<BlogEditor />} />
           <Route path="blog/:id" element={<BlogEditor />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Toaster />
     </>
