@@ -1,6 +1,7 @@
 
 import React from "react"
 import { Link } from "react-scroll"
+import { Link as LinkRouter } from "react-router-dom"
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -101,6 +102,7 @@ const Footer = () => {
           <div className="flex space-x-6 text-sm text-muted-foreground">
             <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
+            <LinkRouter to="/admin/login" className="hover:text-primary transition-colors">Admin Login</LinkRouter>
           </div>
         </div>
       </div>
